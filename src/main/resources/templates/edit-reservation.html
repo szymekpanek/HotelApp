@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservation</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Edit Reservation</h1>
+
+<div id="successMessage" th:if="${successMessage}" style="color: green;">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<div id="errorMessage" th:if="${errorMessage}" style="color: red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<form id="editReservationForm" th:action="@{/reservations/update}" method="post">
+    <input type="hidden" th:value="${reservation.reservation_id}" name="reservationId">
+
+    <p>Reservation ID: <span th:text="${reservation.reservation_id}"></span></p>
+
+    <label for="checkInDate">New Check-In Date:</label>
+    <input type="date" id="checkInDate" name="checkInDate" th:value="${reservation.checkInDate}" required>
+    <br>
+
+    <label for="checkOutDate">New Check-Out Date:</label>
+    <input type="date" id="checkOutDate" name="checkOutDate" th:value="${reservation.checkOutDate}" required>
+    <br>
+
+    <div id="validationMessage" style="color: red; margin-top: 10px;"></div>
+
+    <button type="submit">Update Reservation</button>
+</form>
+
+<script>
+    document.getElementById('editReservationForm').addEventListener('submit', function(event) {
+        const checkInDateInput = document.getElementById('checkInDate');
+        const checkOutDateInput = document.getElementById('checkOutDate');
+        const validationMessage = document.getElementById('validationMessage');
+
+        const checkInDate = new Date(checkInDateInput.value);
+        const checkOutDate = new Date(checkOutDateInput.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Usuwamy czas z dzisiejszej daty
+
+        let message = '';
+
+        if (checkInDate < today) {
+            message = 'Check-in date cannot be earlier than today.';
+        } else if (checkOutDate <= checkInDate) {
+            message = 'Check-out date must be later than check-in date.';
+        }
+
+        if (message) {
+            event.preventDefault();
+            validationMessage.textContent = message;
+        } else {
+            validationMessage.textContent = '';
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservations and Rooms</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Hotel Reservations and Rooms</h1>
+
+<h2>All Reservations</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Reservation ID</th>
+        <th>Room ID</th>
+        <th>Guest Name</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>Actions</th>
+        <th>Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.reservation_id}"></td>
+        <td th:text="${reservation.room.getRoom_id()}"></td>
+        <td th:text="${reservation.guestName}"></td>
+        <td th:text="${reservation.checkInDate}"></td>
+        <td th:text="${reservation.checkOutDate}"></td>
+        <td>
+            <a th:href="@{/reservations/edit/{id}(id=${reservation.reservation_id})}">EDIT</a>
+        </td>
+        <td th:text="${reservation.stayPrice}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>All Rooms</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Room ID</th>
+        <th>Type</th>
+        <th>Capacity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.room_id}"></td>
+        <td th:text="${room.roomType}"></td>
+        <td th:text="${room.capacity}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
