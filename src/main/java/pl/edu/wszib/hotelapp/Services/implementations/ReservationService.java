@@ -85,6 +85,7 @@ public class ReservationService implements IReservationService {
             long stayDuration = ChronoUnit.DAYS.between(reservation.getCheckInDate(), reservation.getCheckOutDate());
             if (stayDuration > 0) {
                 return stayDuration * reservation.getRoom().getPricePerNight();
+                System.out.println("Test");
             }
         }
         return 0.0;
