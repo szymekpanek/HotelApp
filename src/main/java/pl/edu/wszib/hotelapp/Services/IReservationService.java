@@ -6,10 +6,13 @@ import pl.edu.wszib.hotelapp.model.Room;
 
 import java.time.LocalDate;
 public interface IReservationService {
-    Reservation createReservation(long roomId, String guestName, LocalDate checkInDate, LocalDate checkOutDate);
-    void updateReservation(Long reservationId, String newCheckInDate, String newCheckOutDate);
+    Reservation createReservation(long roomId, String guestName, LocalDate checkInDate, LocalDate checkOutDate, boolean hasBreakfast, boolean hasDinner);
+    void updateReservation(Long reservationId, String newCheckInDate, String newCheckOutDate, boolean hasBreakfast, boolean hasDinner);
 
     Reservation findReservationById(Long reservationId);
 
-    double calculateStayPrice(Reservation reservation);
+    void calculateMealCost(Reservation reservation);
+
+    void calculateRoomCost(Reservation reservation);
+    void calculateStayPrice(Reservation reservation);
 }

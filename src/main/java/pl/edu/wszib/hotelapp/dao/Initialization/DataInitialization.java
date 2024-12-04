@@ -21,24 +21,24 @@ public class DataInitialization implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Dodaj pokoje
+        // standardowe pokoje
         roomDAO.save(new Room(null, Room.RoomType.STANDARD.name(), 4, Room.RoomType.STANDARD.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.STANDARD.name(), 4, Room.RoomType.STANDARD.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.STANDARD.name(), 4, Room.RoomType.STANDARD.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.STANDARD.name(), 4, Room.RoomType.STANDARD.getPricePerNight()));
-
+        // apartamenty
         roomDAO.save(new Room(null, Room.RoomType.APARTMENT.name(), 2, Room.RoomType.APARTMENT.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.APARTMENT.name(), 2, Room.RoomType.APARTMENT.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.APARTMENT.name(), 2, Room.RoomType.APARTMENT.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.APARTMENT.name(), 2, Room.RoomType.APARTMENT.getPricePerNight()));
-
+        // studio
         roomDAO.save(new Room(null, Room.RoomType.STUDIO.name(), 5, Room.RoomType.STUDIO.getPricePerNight()));
         roomDAO.save(new Room(null, Room.RoomType.STUDIO.name(), 5, Room.RoomType.STUDIO.getPricePerNight()));
 
-        reservationDAO.save(new Reservation(null, roomDAO.findById(1L).orElseThrow(), "John Doe", LocalDate.now(), LocalDate.now().plusDays(7),0.0));
-        reservationDAO.save(new Reservation(null, roomDAO.findById(2L).orElseThrow(), "Jane Doe", LocalDate.now(), LocalDate.now().plusDays(14), 0.0));
-
-
+        // rezerwacje
+        reservationDAO.save(new Reservation(null, roomDAO.findById(1L).orElseThrow(), "Adam Malysz", LocalDate.now(), LocalDate.now().plusDays(7),true, true, 0.0, 0.0 , 0.0 ));
+        reservationDAO.save(new Reservation(null, roomDAO.findById(6L).orElseThrow(), "Mieczyslaw Kot", LocalDate.now(), LocalDate.now().plusDays(14), true, false, 0.0 , 0.0 , 0.0 ));
+        reservationDAO.save(new Reservation(null, roomDAO.findById(10L).orElseThrow(), "Jakub Klepka", LocalDate.now(), LocalDate.now().plusDays(28), false, true,  0.0 , 0.0 , 0.0 ));
     }
 }
 

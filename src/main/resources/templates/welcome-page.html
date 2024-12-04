@@ -9,6 +9,12 @@
 <body>
 <h1>Hotel Reservations and Rooms</h1>
 
+<a href="/reservations/create">
+    <button>Create New Reservation</button>
+</a>
+
+<br><br><br><br><br>
+
 <h2>All Reservations</h2>
 <table border="1">
     <thead>
@@ -18,21 +24,25 @@
         <th>Guest Name</th>
         <th>Check-In Date</th>
         <th>Check-Out Date</th>
-        <th>Actions</th>
+        <th>Room Cost</th>
+        <th>Meal Cost</th>
         <th>Total Price</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="reservation : ${reservations}">
         <td th:text="${reservation.reservation_id}"></td>
-        <td th:text="${reservation.room.getRoom_id()}"></td>
+        <td th:text="${reservation.room.room_id}"></td>
         <td th:text="${reservation.guestName}"></td>
         <td th:text="${reservation.checkInDate}"></td>
         <td th:text="${reservation.checkOutDate}"></td>
+        <td th:text="${reservation.roomCost}"></td>
+        <td th:text="${reservation.mealCost}"></td>
+        <td th:text="${reservation.stayPrice}"></td>
         <td>
             <a th:href="@{/reservations/edit/{id}(id=${reservation.reservation_id})}">EDIT</a>
         </td>
-        <td th:text="${reservation.stayPrice}"></td>
     </tr>
     </tbody>
 </table>

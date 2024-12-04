@@ -30,37 +30,50 @@
     <input type="date" id="checkOutDate" name="checkOutDate" th:value="${reservation.checkOutDate}" required>
     <br>
 
+    <label for="breakFast">
+        <input type="checkbox" id="breakFast" name="breakFast" th:checked="${reservation.breakFast}">
+        Include Breakfast
+    </label>
+    <br>
+
+    <label for="dinner">
+        <input type="checkbox" id="dinner" name="dinner" th:checked="${reservation.dinner}">
+        Include Dinner
+    </label>
+
+    <br>
+
     <div id="validationMessage" style="color: red; margin-top: 10px;"></div>
 
     <button type="submit">Update Reservation</button>
 </form>
 
-<script>
-    document.getElementById('editReservationForm').addEventListener('submit', function(event) {
-        const checkInDateInput = document.getElementById('checkInDate');
-        const checkOutDateInput = document.getElementById('checkOutDate');
-        const validationMessage = document.getElementById('validationMessage');
+<!--<script>-->
+<!--    document.getElementById('editReservationForm').addEventListener('submit', function(event) {-->
+<!--        const checkInDateInput = document.getElementById('checkInDate');-->
+<!--        const checkOutDateInput = document.getElementById('checkOutDate');-->
+<!--        const validationMessage = document.getElementById('validationMessage');-->
 
-        const checkInDate = new Date(checkInDateInput.value);
-        const checkOutDate = new Date(checkOutDateInput.value);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // Usuwamy czas z dzisiejszej daty
+<!--        const checkInDate = new Date(checkInDateInput.value);-->
+<!--        const checkOutDate = new Date(checkOutDateInput.value);-->
+<!--        const today = new Date();-->
+<!--        today.setHours(0, 0, 0, 0); // Usuwamy czas z dzisiejszej daty-->
 
-        let message = '';
+<!--        let message = '';-->
 
-        if (checkInDate < today) {
-            message = 'Check-in date cannot be earlier than today.';
-        } else if (checkOutDate <= checkInDate) {
-            message = 'Check-out date must be later than check-in date.';
-        }
+<!--        if (checkInDate < today) {-->
+<!--            message = 'Check-in date cannot be earlier than today.';-->
+<!--        } else if (checkOutDate <= checkInDate) {-->
+<!--            message = 'Check-out date must be later than check-in date.';-->
+<!--        }-->
 
-        if (message) {
-            event.preventDefault();
-            validationMessage.textContent = message;
-        } else {
-            validationMessage.textContent = '';
-        }
-    });
-</script>
+<!--        if (message) {-->
+<!--            event.preventDefault();-->
+<!--            validationMessage.textContent = message;-->
+<!--        } else {-->
+<!--            validationMessage.textContent = '';-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

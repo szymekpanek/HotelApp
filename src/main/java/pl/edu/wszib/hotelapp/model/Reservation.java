@@ -27,16 +27,15 @@ public class Reservation {
 
     private LocalDate checkOutDate;
 
-    @Transient
+    private boolean breakFast;
+
+    private boolean dinner;
+
+    private double mealCost;
+
+    private double roomCost;
+
     private double stayPrice;
 
-    public double getStayPrice() {
-        if (room != null && checkInDate != null && checkOutDate != null) {
-            long stayDuration = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
-            if (stayDuration > 0) {
-                return stayDuration * room.getPricePerNight();
-            }
-        }
-        return 0.0;
-    }
+
 }
